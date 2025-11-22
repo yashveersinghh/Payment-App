@@ -1,5 +1,6 @@
 import AppBar from "../components/AppBar"
 import Balance from "../components/Balance"
+import Users from "../components/Users"
 
 const Dashboard = () => {
 	return (
@@ -8,8 +9,9 @@ const Dashboard = () => {
 				<AppBar />
 			</div>
 			<div className="w-full max-w-4xl mt-4 px-4">
-				<Balance />
+				<Balance value={"10,000"} />
 			</div>
+			<Users />
 		</div>
 	)
 }
