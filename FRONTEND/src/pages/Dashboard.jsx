@@ -9,7 +9,7 @@ const Dashboard = () => {
 				<AppBar />
 			</div>
 			<div className="w-full max-w-4xl mt-4 px-4">
-				<Balance value={"10,000"} />
+				<Balance />
 			</div>
 			<Users />
 		</div>
