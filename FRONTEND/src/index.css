@@ -1,1 +1,18 @@
+/* Load external fonts first so they are available to Tailwind layers */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
 @import "tailwindcss";
+
+:root {
+  --font-primary: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+}
+
+body {
+  font-family: var(--font-primary);
+  color: #0f172a;
+}
+
+/* utility class to explicitly use the primary font */
+.font-primary {
+  font-family: var(--font-primary);
+}
