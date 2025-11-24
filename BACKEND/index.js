@@ -11,7 +11,7 @@ const MONGO_URI = process.env.MONGO_URI || process.env.MONGO_URL;
 const FRONTEND_URL = process.env.FRONTEND_URL || '*';
 
 if (!MONGO_URI) {
-  console.error('MONGO_URI environment variable is not set');
+  console.error('MONGO_URI or MONGO_URL environment variable is not set');
   process.exit(1);
 }
 
