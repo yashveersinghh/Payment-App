@@ -65,9 +65,11 @@ router.post("/signin", async (req, res) => {
     const { success } = signinBody.safeParse(req.body)
     if (!success) {
         return res.status(411).json({
-            message: "Email already taken / Incorrect inputs"
+            message: "Incorrect email or password format"
         })
     }
+
+    console.log('Signin attempt:', req.body.username);
 
     const user = await User.findOne({
         username: req.body.username,
@@ -79,15 +81,16 @@ router.post("/signin", async (req, res) => {
             userId: user._id
         }, JWT_SECRET);
   
+        console.log('Signin success for:', req.body.username);
         res.json({
             token: token
         })
         return;
     }
 
-    
+    console.log('Signin failed - user not found or password mismatch for:', req.body.username);
     res.status(411).json({
-        message: "Error while logging in"
+        message: "Invalid email or password"
     })
 })
 

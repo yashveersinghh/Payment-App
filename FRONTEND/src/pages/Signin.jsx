@@ -7,6 +7,7 @@ import SubHeading from "../components/SubHeading"
 import { useState } from "react"
 import toast from 'react-hot-toast'
 import axios from "axios"
+import { API_BASE } from "../lib/api"
 
 const Signin = () => {
   const [username, setUsername] = useState("");
@@ -22,7 +23,7 @@ const Signin = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:3000/api/v1/user/signin", {
+      const res = await axios.post(`${API_BASE}/api/v1/user/signin`, {
         username,
         password,
       });

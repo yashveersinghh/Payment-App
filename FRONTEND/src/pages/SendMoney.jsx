@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, useSearchParams } from "react-router-dom"
+import { API_BASE } from "../lib/api";
 
 const SendMoney = () => {
 	const [amount, setAmount] = useState(0);
@@ -26,7 +27,7 @@ const SendMoney = () => {
 				</div>
 				<div className="mt-5 mb-5">
 					<button onClick={()=>{
-						axios.post("http://localhost:3000/api/v1/account/transfer",{
+						axios.post(`${API_BASE}/api/v1/account/transfer`,{
 							to: id,
 							amount: amount
 						}, {

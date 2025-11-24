@@ -7,6 +7,7 @@ import SubHeading from "../components/SubHeading"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
+import { API_BASE } from "../lib/api"
 
 const Signup = () => {
   const [firstName, setFirstName] = useState("")
@@ -24,7 +25,7 @@ const Signup = () => {
 
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:3000/api/v1/user/signup", {
+      const response = await axios.post(`${API_BASE}/api/v1/user/signup`, {
         firstName,
         lastName,
         username,

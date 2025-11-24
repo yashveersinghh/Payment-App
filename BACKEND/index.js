@@ -7,13 +7,8 @@ const mainRouter = require('./routes/index');
 const app = express();
 
 const PORT = process.env.PORT || 3000;
-const MONGO_URI = process.env.MONGO_URI;
-const FRONTEND_URL = process.env.FRONTEND_URL || '';
-
-if (!MONGO_URI) {
-  console.error('MONGO_URI is not set. Exiting.');
-  process.exit(1);
-}
+const MONGO_URI = process.env.MONGO_URI || process.env.MONGO_URL;
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
@@ -30,6 +25,10 @@ app.use(cors({
 app.use(express.json());
 
 app.use('/api/v1', mainRouter)
+
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
