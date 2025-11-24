@@ -7,11 +7,21 @@ const mainRouter = require('./routes/index');
 const app = express();
 
 const PORT = process.env.PORT || 3000;
-const MONGO_URI = process.env.MONGO_URI || process.env.MONGO_URL;
+
+// Debug: Log all environment variables
+console.log('=== Environment Variables Debug ===');
+console.log('All env vars:', Object.keys(process.env).filter(key => key.includes('MONGO') || key.includes('mongo')));
+console.log('MONGO_URI:', process.env.MONGO_URI);
+console.log('MONGO_URL:', process.env.MONGO_URL);
+console.log('DATABASE_URL:', process.env.DATABASE_URL);
+console.log('===================================');
+
+const MONGO_URI = process.env.MONGO_URI || process.env.MONGO_URL || process.env.DATABASE_URL;
 const FRONTEND_URL = process.env.FRONTEND_URL || '*';
 
 if (!MONGO_URI) {
-  console.error('MONGO_URI or MONGO_URL environment variable is not set');
+  console.error('No MongoDB connection string found in environment variables');
+  console.error('Checked: MONGO_URI, MONGO_URL, DATABASE_URL');
   process.exit(1);
 }
 
